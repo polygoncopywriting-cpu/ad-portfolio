@@ -8,8 +8,8 @@
 // `poster` is optional — a still frame shown before the video plays.
 //
 // Performance metrics sourced from Meta Ads Manager (Apr-Aug 2026).
-// Newest concepts (C26-C30) have no data yet — tagged accordingly until
-// the next KPI update.
+// Newest concepts (C26-C30, Bounty16-C1) have no data yet — tagged
+// accordingly until the next KPI update.
 //
 // Note: R2 object keys are case-sensitive. C29 and C30 were uploaded
 // with capitalized filenames (B16-C29-..., B16-C30-...) — src URLs below
@@ -92,6 +92,24 @@ poster: "",
 title: "B16-C30 · VH3-TH3",
 description: "\"If your dog loves to ride...\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH3-TH3.mp4",
+poster: "",
+},
+{
+title: "Bounty16-C1 · VH1-TH1 — Warranty Test",
+description: "\"I tested their five-year warranty. Honestly, I expected a fight.\" — testimonial concept from the Ad Bounties program. 1 of 3 hook variations (see VH2 and VH3 below). No performance data available yet.",
+src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/bounty16-c1-vh1-th1.mp4",
+poster: "",
+},
+{
+title: "Bounty16-C1 · VH2-TH2 — Warranty Test",
+description: "\"Yes, it costs more — but after this, I'd still buy it again.\" — 1 of 3 hook variations for this concept. No performance data available yet.",
+src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/bounty16-c1-vh2-th2.mp4",
+poster: "",
+},
+{
+title: "Bounty16-C1 · VH3-TH3 — Warranty Test",
+description: "\"One of my kids broke our dog's backseat extender. Then this happened.\" — 1 of 3 hook variations for this concept. No performance data available yet.",
+src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/bounty16-c1-vh3-th3.mp4",
 poster: "",
 },
 ];
