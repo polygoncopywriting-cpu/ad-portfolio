@@ -11,7 +11,7 @@ card.className = "card";
 if (video.src) {
 const videoEl = document.createElement("video");
 videoEl.controls = true;
-videoEl.preload = "none";
+videoEl.preload = "metadata";
 videoEl.src = video.src;
 if (video.poster) videoEl.poster = video.poster;
 card.appendChild(videoEl);
