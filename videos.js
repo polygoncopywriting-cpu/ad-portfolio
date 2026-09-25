@@ -7,6 +7,8 @@
 // To add more entries, copy an object below and edit its fields.
 // `poster` is optional — a still frame shown before the video plays.
 // `section` must match an id in SECTIONS below.
+// `type: "image"` renders a static image card instead of a video player
+// (used for the Kleins Organic post below, which has no video file).
 //
 // Performance metrics sourced from Meta Ads Manager (Apr-Aug 2026).
 // Newest concepts (C26-C30, Bounty16-C1) have no data yet — tagged
@@ -15,6 +17,21 @@
 // Note: R2 object keys are case-sensitive. C29 and C30 were uploaded
 // with capitalized filenames (B16-C29-..., B16-C30-...) — src URLs below
 // match that exactly. Everything else uses lowercase.
+//
+// TIMELINE dates are sourced from the project WhatsApp chat log (when
+// each concept was locked/loaded for review), not from Meta Ads Manager.
+
+const TIMELINE = [
+{ date: "2026-04-20", tag: "C3", note: "The Control" },
+{ date: "2026-05-14", tag: "C8 & C9", note: "Winner + loser test" },
+{ date: "2026-08-08", tag: "C19", note: "Recent Standout" },
+{ date: "2026-08-20", tag: "Bounty16-C1", note: "Self-initiated bounty", highlight: true },
+{ date: "2026-09-08", tag: "C26", note: "In testing" },
+{ date: "2026-09-12", tag: "C27", note: "In testing" },
+{ date: "2026-09-18", tag: "C28", note: "In testing" },
+{ date: "2026-09-21", tag: "C29", note: "In testing" },
+{ date: "2026-09-23", tag: "C30", note: "Latest" },
+];
 
 const SECTIONS = [
 {
@@ -26,6 +43,11 @@ intro: "Bounty16-C1 is a testimonial concept I wrote, shot, and edited on my own
 id: "track-record",
 title: "Track Record",
 intro: "These four ran over a 4-month stretch and include some of the account's best (and worst) performers by spend. My editing has moved fast since I made them — read this section for real performance data, not as a sample of my current editing level.",
+},
+{
+id: "other-brands",
+title: "Other Brand Work",
+intro: "A look outside the Pawpy account. This ad ran for Kleins Organic, a natural haircare and skincare brand.",
 },
 ];
 
@@ -140,6 +162,14 @@ section: "track-record",
 title: "B16-C9 · VH1-TH1 — Tested & Killed",
 description: "Hook never landed, so it was capped and pulled before it scaled. Hook Rate 17–45% · ThruPlay Hold Rate 3–12% · Spend held under $25/month across 3 months of testing.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/b16-c9-vh-th1.mp4",
+poster: "",
+},
+{
+section: "other-brands",
+type: "image",
+title: "Kleins Organic — Rosmarinas Shampoo Bar",
+description: "Facebook post for Kleins Organic's solid shampoo bar — founder story, ingredient sourcing, and customer testimonials pulled into the copy. Copy is in Lithuanian, the brand's primary market. 1.2K reactions, 277 comments, 167 shares.",
+src: "images/kleins-organic-rosmarinas-post.png",
 poster: "",
 },
 ];
