@@ -74,7 +74,7 @@ wrapper.appendChild(heading);
 
 const note = document.createElement("p");
 note.className = "timeline-note";
-note.textContent = "Every concept above, in the order I made it — dates pulled straight from the project chat log. The pace picks up fast toward the end.";
+note.textContent = "Selected concepts from a 30+ piece body of work on this account, shown in production order (lower numbers = earlier). Includes the top-spending concept to date and the most recent work in progress.";
 wrapper.appendChild(note);
 
 const scroller = document.createElement("div");

@@ -22,7 +22,7 @@
 // each concept was locked/loaded for review), not from Meta Ads Manager.
 
 const TIMELINE = [
-{ date: "2026-04-20", tag: "C3", note: "The Control" },
+{ date: "2026-04-20", tag: "C3", note: "Top spender · The Control" },
 { date: "2026-05-14", tag: "C8 & C9", note: "Winner + loser test" },
 { date: "2026-08-08", tag: "C19", note: "Recent Standout" },
 { date: "2026-08-20", tag: "Bounty16-C1", note: "Self-initiated bounty", highlight: true },
