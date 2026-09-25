@@ -8,29 +8,61 @@ function renderCard(video) {
 const card = document.createElement("div");
 card.className = "card";
 
+const media = document.createElement("div");
+media.className = "media";
+
 if (video.type === "image" && video.src) {
 const img = document.createElement("img");
 img.src = video.src;
 img.alt = video.title;
 img.loading = "lazy";
-card.appendChild(img);
+media.appendChild(img);
 } else if (video.src) {
 const videoEl = document.createElement("video");
 videoEl.controls = true;
 videoEl.preload = "metadata";
 videoEl.src = video.src;
 if (video.poster) videoEl.poster = video.poster;
-card.appendChild(videoEl);
+media.appendChild(videoEl);
+
+const overlay = document.createElement("div");
+overlay.className = "play-overlay";
+overlay.innerHTML = '<span class="play-overlay-icon" aria-hidden="true"></span>';
+media.appendChild(overlay);
+
+const setPlaying = (isPlaying) => media.classList.toggle("playing", isPlaying);
+videoEl.addEventListener("play", () => setPlaying(true));
+videoEl.addEventListener("pause", () => setPlaying(false));
+videoEl.addEventListener("ended", () => setPlaying(false));
 } else {
 const placeholder = document.createElement("div");
 placeholder.className = "placeholder";
 placeholder.textContent = "Video not linked yet — add its R2 URL in videos.js";
-card.appendChild(placeholder);
+media.appendChild(placeholder);
 }
+
+card.appendChild(media);
 
 const body = document.createElement("div");
 body.className = "card-body";
-body.innerHTML = `<h3>${escapeHtml(video.title)}</h3><p>${escapeHtml(video.description)}</p>`;
+body.innerHTML = `<h3>${escapeHtml(video.title)}</h3>`;
+
+if (video.stats && video.stats.length > 0) {
+const statRow = document.createElement("div");
+statRow.className = "stat-row";
+video.stats.forEach((stat) => {
+const badge = document.createElement("span");
+badge.className = "stat-badge";
+badge.textContent = `${stat.label}: ${stat.value}`;
+statRow.appendChild(badge);
+});
+body.appendChild(statRow);
+}
+
+const desc = document.createElement("p");
+desc.textContent = video.description;
+body.appendChild(desc);
+
 card.appendChild(body);
 
 return card;
@@ -39,6 +71,7 @@ return card;
 function renderSection(section, videos) {
 const wrapper = document.createElement("section");
 wrapper.className = "portfolio-section";
+wrapper.id = section.id;
 
 const heading = document.createElement("h2");
 heading.textContent = section.title;
@@ -117,14 +150,31 @@ return wrapper;
 }
 
 const timelineContainer = document.getElementById("timeline");
-if (timelineContainer && typeof TIMELINE !== "undefined") {
+const hasTimeline = timelineContainer && typeof TIMELINE !== "undefined" && TIMELINE.length > 0;
+if (hasTimeline) {
 timelineContainer.appendChild(renderTimeline(TIMELINE));
 }
 
 const portfolio = document.getElementById("portfolio");
+const sectionsWithVideos = SECTIONS.filter(
+(section) => VIDEOS.filter((video) => video.section === section.id).length > 0
+);
 
-SECTIONS.forEach((section) => {
+sectionsWithVideos.forEach((section) => {
 const videos = VIDEOS.filter((video) => video.section === section.id);
-if (videos.length === 0) return;
 portfolio.appendChild(renderSection(section, videos));
 });
+
+const navContainer = document.getElementById("site-nav");
+if (navContainer) {
+const links = [];
+if (hasTimeline) links.push({ id: "timeline", label: "Timeline" });
+sectionsWithVideos.forEach((section) => links.push({ id: section.id, label: section.title }));
+
+links.forEach((link) => {
+const a = document.createElement("a");
+a.href = `#${link.id}`;
+a.textContent = link.label;
+navContainer.appendChild(a);
+});
+}
