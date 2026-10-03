@@ -170,8 +170,11 @@ white-space: nowrap;
 
 .timeline-node-note {
 font-size: 0.7rem;
-color: var(--text-dim);
-white-space: nowrap;
+  color: var(--text-dim);
+  white-space: normal;
+  align-self: stretch;
+  max-width: 100%;
+  word-break: break-word;
 }
 
 .timeline-node.highlight .timeline-dot {
