@@ -21,10 +21,14 @@ function renderMedia(video) {
 }
 
 function renderBlueprintField(label, value) {
+  const trimmed = (value || "").trim();
+  const valueHtml = trimmed
+    ? escapeHtml(trimmed)
+    : `<span class="bp-pending">— awaiting input —</span>`;
   return `
     <div class="bp-field">
       <span class="bp-key">&gt; ${label}:</span>
-      <span class="bp-value">${escapeHtml(value)}</span>
+      <span class="bp-value">${valueHtml}</span>
     </div>`;
 }
 
@@ -32,12 +36,13 @@ function renderRow(video, index) {
   const bp = BLUEPRINTS[video.title];
   const statusTag = bp
     ? bp.verified
-      ? `<span class="bp-status verified">[ SRC: GROUNDED ]</span>`
-      : `<span class="bp-status draft">[ SRC: INFERRED — NEEDS REVIEW ]</span>`
+      ? `<span class="bp-status verified">[ HOOK: GROUNDED ]</span>`
+      : `<span class="bp-status draft">[ HOOK: INFERRED — NEEDS REVIEW ]</span>`
     : `<span class="bp-status draft">[ NO BLUEPRINT ON FILE ]</span>`;
 
   const fields = bp
-    ? renderBlueprintField("HOOK_ANGLE", bp.hook) +
+    ? renderBlueprintField("ANGLE", bp.angle) +
+      renderBlueprintField("HOOK_ANGLE", bp.hook) +
       renderBlueprintField("STAGE_OF_AWARENESS", bp.awareness) +
       renderBlueprintField("MARKET_SOPHISTICATION", bp.sophistication) +
       renderBlueprintField("SCRIPT_BLUEPRINT", bp.blueprint)
@@ -72,7 +77,8 @@ function renderConsole() {
     const verifiedCount = Object.values(BLUEPRINTS).filter((b) => b.verified).length;
     statusEl.textContent =
       `[ PAWPY AD STRATEGY CONSOLE ]  STATUS: ONLINE  ENTRIES: ${VIDEOS.length}  ` +
-      `GROUNDED: ${verifiedCount}  DRAFT: ${Object.keys(BLUEPRINTS).length - verifiedCount}  RENDERED: ${now}`;
+      `HOOK GROUNDED: ${verifiedCount}  HOOK INFERRED: ${Object.keys(BLUEPRINTS).length - verifiedCount}  ` +
+      `AWAITING INPUT: ANGLE / AWARENESS / SOPHISTICATION / BLUEPRINT  RENDERED: ${now}`;
   }
 }
 
