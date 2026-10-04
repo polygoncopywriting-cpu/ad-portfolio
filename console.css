@@ -195,6 +195,11 @@ a {
   color: var(--text);
 }
 
+.bp-pending {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
 @media (max-width: 760px) {
   .console-row {
     grid-template-columns: 1fr;
