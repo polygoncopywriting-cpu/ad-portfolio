@@ -40,13 +40,30 @@ function renderRow(video, index) {
       : `<span class="bp-status draft">[ HOOK: INFERRED — NEEDS REVIEW ]</span>`
     : `<span class="bp-status draft">[ NO BLUEPRINT ON FILE ]</span>`;
 
+  const authority = bp && bp.authority
+    ? bp.authority.present
+      ? `[x] ${bp.authority.type || "type not noted"}`
+      : bp.teardown_date ? "[ ] none" : ""
+    : "";
+
   const fields = bp
     ? renderBlueprintField("ANGLE", bp.angle) +
       renderBlueprintField("HOOK_ANGLE", bp.hook) +
+      renderBlueprintField("DESIRE", bp.desire) +
+      renderBlueprintField("AVATAR", bp.avatar) +
       renderBlueprintField("STAGE_OF_AWARENESS", bp.awareness) +
       renderBlueprintField("MARKET_SOPHISTICATION", bp.sophistication) +
-      renderBlueprintField("SCRIPT_BLUEPRINT", bp.blueprint)
+      renderBlueprintField("MECHANISM", bp.mechanism) +
+      renderBlueprintField("EMOTION_ARC", bp.emotion_arc) +
+      renderBlueprintField("AUTHORITY", authority) +
+      renderBlueprintField("DIAGNOSIS", bp.diagnosis) +
+      renderBlueprintField("FIX", bp.fix) +
+      (bp.blueprint ? renderBlueprintField("SCRIPT_BLUEPRINT", bp.blueprint) : "")
     : `<div class="bp-field"><span class="bp-value">No blueprint drafted for this entry yet.</span></div>`;
+
+  const teardownTag = bp && bp.teardown_date
+    ? `<span class="bp-status verified">[ TEARDOWN: ${escapeHtml(bp.teardown_date)} ]</span>`
+    : `<span class="bp-status draft">[ TEARDOWN: PENDING ]</span>`;
 
   const idTag = String(index + 1).padStart(2, "0");
 
@@ -60,6 +77,7 @@ function renderRow(video, index) {
           <span class="bp-id">AD_${idTag}</span>
           <h3>${escapeHtml(video.title)}</h3>
           ${statusTag}
+          ${teardownTag}
         </div>
         ${fields}
       </div>
@@ -75,10 +93,11 @@ function renderConsole() {
   if (statusEl) {
     const now = new Date().toISOString().slice(0, 10);
     const verifiedCount = Object.values(BLUEPRINTS).filter((b) => b.verified).length;
+    const tornDown = Object.values(BLUEPRINTS).filter((b) => b.teardown_date).length;
     statusEl.textContent =
       `[ PAWPY AD STRATEGY CONSOLE ]  STATUS: ONLINE  ENTRIES: ${VIDEOS.length}  ` +
       `HOOK GROUNDED: ${verifiedCount}  HOOK INFERRED: ${Object.keys(BLUEPRINTS).length - verifiedCount}  ` +
-      `AWAITING INPUT: ANGLE / AWARENESS / SOPHISTICATION / BLUEPRINT  RENDERED: ${now}`;
+      `TEARDOWNS: ${tornDown}/${Object.keys(BLUEPRINTS).length}  RENDERED: ${now}`;
   }
 }
 
