@@ -24,8 +24,9 @@
 // `status` on a video entry ("live" | "paused" | "unknown" | "not-launched")
 // reflects the most recent monthly Meta Ads Manager snapshot (currently
 // Sep 2026) — see STATUS_AS_OF. There's a built-in lag until the next
-// snapshot is reviewed. "unknown" means the concept didn't appear in the
-// visible rows of that snapshot (too new/low-spend to confirm either way).
+// snapshot is reviewed. A concept absent from that month's spend data
+// (too low to register) is treated as "paused" per policy, not confirmed
+// off — "unknown" is reserved for cases with no snapshot coverage at all.
 
 const STATUS_AS_OF = "Sep 2026";
 
@@ -112,7 +113,7 @@ poster: "",
 {
 section: "recent",
 date: "2026-09-18",
-status: "unknown",
+status: "paused",
 title: "B16-C28 · VH1-TH1",
 description: "\"I didn't buy 7 different...\" — new concept, in testing. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/b16-c28-vh1-th1.mp4",
@@ -121,7 +122,7 @@ poster: "",
 {
 section: "recent",
 date: "2026-09-21",
-status: "unknown",
+status: "paused",
 title: "B16-C29 · VH1-TH1",
 description: "\"I've had dogs for twenty-two years.\" — 1 of 3 hook variations being tested for this concept (see VH2 and VH3 below). No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C29-VH1-TH1.mp4",
@@ -130,7 +131,7 @@ poster: "",
 {
 section: "recent",
 date: "2026-09-21",
-status: "unknown",
+status: "paused",
 title: "B16-C29 · VH2-TH2",
 description: "\"If your dog stands the whole drive...\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C29-VH2-TH2.mp4",
@@ -139,7 +140,7 @@ poster: "",
 {
 section: "recent",
 date: "2026-09-21",
-status: "unknown",
+status: "paused",
 title: "B16-C29 · VH3-TH3",
 description: "\"It hit me hard.\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C29-VH3-TH3.mp4",
@@ -148,7 +149,7 @@ poster: "",
 {
 section: "recent",
 date: "2026-09-23",
-status: "unknown",
+status: "paused",
 title: "B16-C30 · VH1-TH1",
 description: "\"This bundle from Pawpy...\" — 1 of 3 hook variations being tested for this concept (see VH2 and VH3 below). No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH1-TH1.mp4",
@@ -157,7 +158,7 @@ poster: "",
 {
 section: "recent",
 date: "2026-09-23",
-status: "unknown",
+status: "paused",
 title: "B16-C30 · VH2-TH2",
 description: "\"This bundle from Pawpy stuff is the worst...\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH2-TH2.mp4",
@@ -166,7 +167,7 @@ poster: "",
 {
 section: "recent",
 date: "2026-09-23",
-status: "unknown",
+status: "paused",
 title: "B16-C30 · VH3-TH3",
 description: "\"If your dog loves to ride...\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH3-TH3.mp4",
