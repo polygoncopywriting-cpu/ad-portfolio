@@ -190,6 +190,8 @@ type: "image",
 title: "Kleins Organic — Rosmarinas Shampoo Bar",
 description: "Facebook post for Kleins Organic's solid shampoo bar — founder story, ingredient sourcing, and customer testimonials pulled into the copy. Copy is in Lithuanian, the brand's primary market. 1.2K reactions, 277 comments, 167 shares.",
 src: "images/K.O-breakthrough_1.png",
+detailImage: "images/KO%20ad%20seciion%20zoomed%20in.png",
+detailAlt: "Close-up of the post's reaction, comment, and share counts",
 poster: "",
 },
 ];

@@ -17,6 +17,15 @@ img.src = video.src;
 img.alt = video.title;
 img.loading = "lazy";
 media.appendChild(img);
+
+if (video.detailImage) {
+const detail = document.createElement("img");
+detail.className = "detail-inset";
+detail.src = video.detailImage;
+detail.alt = video.detailAlt || `${video.title} — zoomed detail`;
+detail.loading = "lazy";
+media.appendChild(detail);
+}
 } else if (video.src) {
 const videoEl = document.createElement("video");
 videoEl.controls = true;
