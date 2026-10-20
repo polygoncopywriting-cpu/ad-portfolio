@@ -227,11 +227,6 @@ wrapper.appendChild(footnote);
 return wrapper;
 }
 
-const statusNote = document.getElementById("status-note");
-if (statusNote && typeof STATUS_AS_OF !== "undefined") {
-statusNote.textContent = `Live/paused status on each concept below reflects the most recent monthly Meta Ads Manager snapshot (${STATUS_AS_OF}) — updated when a new snapshot is reviewed.`;
-}
-
 const spendProgressContainer = document.getElementById("spend-progress");
 if (spendProgressContainer && typeof SPEND_PROGRESS !== "undefined") {
 spendProgressContainer.appendChild(renderSpendProgress(SPEND_PROGRESS));
