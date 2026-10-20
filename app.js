@@ -143,6 +143,62 @@ grid.appendChild(renderCard(video));
 return wrapper;
 }
 
+function formatMoney(n) {
+return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function renderSpendProgress(progress) {
+const wrapper = document.createElement("div");
+wrapper.className = "spend-progress-wrap";
+
+const heading = document.createElement("h2");
+heading.textContent = "Ad Spend Progress";
+wrapper.appendChild(heading);
+
+const goal = progress.milestones[progress.milestones.length - 1];
+const pct = Math.min(100, (progress.total / goal) * 100);
+
+const summary = document.createElement("p");
+summary.className = "spend-progress-summary";
+summary.textContent = `${formatMoney(progress.total)} verified ad spend (${progress.asOf}) — on the way to ${formatMoney(goal)}.`;
+wrapper.appendChild(summary);
+
+const track = document.createElement("div");
+track.className = "spend-track";
+
+const fill = document.createElement("div");
+fill.className = "spend-fill";
+fill.style.width = `${pct}%`;
+track.appendChild(fill);
+
+progress.milestones.forEach((milestone) => {
+const markerPct = (milestone / goal) * 100;
+const marker = document.createElement("div");
+marker.className = "spend-milestone" + (progress.total >= milestone ? " reached" : "");
+marker.style.left = `${markerPct}%`;
+
+const dot = document.createElement("span");
+dot.className = "spend-milestone-dot";
+marker.appendChild(dot);
+
+const label = document.createElement("span");
+label.className = "spend-milestone-label";
+label.textContent = milestone >= 1000000 ? `$${milestone / 1000000}M` : `$${milestone / 1000}K`;
+marker.appendChild(label);
+
+track.appendChild(marker);
+});
+
+wrapper.appendChild(track);
+
+const footnote = document.createElement("p");
+footnote.className = "spend-progress-footnote";
+footnote.textContent = progress.footnote;
+wrapper.appendChild(footnote);
+
+return wrapper;
+}
+
 function formatTimelineDate(iso) {
 const d = new Date(iso + "T00:00:00Z");
 return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
@@ -198,6 +254,11 @@ track.appendChild(node);
 scroller.appendChild(track);
 wrapper.appendChild(scroller);
 return wrapper;
+}
+
+const spendProgressContainer = document.getElementById("spend-progress");
+if (spendProgressContainer && typeof SPEND_PROGRESS !== "undefined") {
+spendProgressContainer.appendChild(renderSpendProgress(SPEND_PROGRESS));
 }
 
 const timelineContainer = document.getElementById("timeline");

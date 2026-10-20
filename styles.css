@@ -52,6 +52,84 @@ header p {
   max-width: 60ch;
 }
 
+.spend-progress-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 28px;
+}
+
+.spend-progress-wrap h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-family: var(--mono);
+}
+
+.spend-progress-summary {
+  margin: 0 0 20px;
+  color: var(--text-dim);
+}
+
+.spend-track {
+  position: relative;
+  height: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  margin: 0 8px 28px;
+}
+
+.spend-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: var(--matrix);
+  border-radius: 5px 0 0 5px;
+  transition: width 0.3s ease;
+}
+
+.spend-milestone {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.spend-milestone-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  display: block;
+}
+
+.spend-milestone.reached .spend-milestone-dot {
+  background: var(--matrix);
+  border-color: var(--matrix);
+}
+
+.spend-milestone-label {
+  position: absolute;
+  top: 16px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.spend-milestone.reached .spend-milestone-label {
+  color: var(--matrix);
+}
+
+.spend-progress-footnote {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
 .site-nav {
   position: sticky;
   top: 0;

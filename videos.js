@@ -21,6 +21,17 @@
 // TIMELINE dates are sourced from the project WhatsApp chat log (when
 // each concept was locked/loaded for review), not from Meta Ads Manager.
 
+// Verified against Meta Ads Manager screenshots, Apr-Sep 2026. Counts
+// only ad-set line items that crossed $1,000 in spend, summed across
+// every concept — smaller test placements aren't included. Update
+// `total` and `asOf` when re-checking against newer data.
+const SPEND_PROGRESS = {
+total: 104063.14,
+asOf: "Apr–Sep 2026",
+footnote: "Based on ads that crossed a $1,000 spend threshold. Smaller test placements aren't counted.",
+milestones: [100000, 250000, 500000, 1000000],
+};
+
 const TIMELINE = [
 { date: "2026-04-20", tag: "C3", note: "Top spender · The Control" },
 { date: "2026-05-14", tag: "C8 & C9", note: "Winner + loser test" },
