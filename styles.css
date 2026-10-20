@@ -224,6 +224,42 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
+  margin-bottom: 24px;
+}
+
+.grid:last-child {
+  margin-bottom: 0;
+}
+
+.group-heading {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-family: var(--mono);
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+
+.group-intro {
+  margin: 0 0 16px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  max-width: 70ch;
+}
+
+.tag-chip {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  background: rgba(240, 180, 41, 0.12);
+  color: var(--highlight);
+  border: 1px solid rgba(240, 180, 41, 0.4);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .card {

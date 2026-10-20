@@ -1,9 +1,3 @@
-function escapeHtml(str) {
-const div = document.createElement("div");
-div.textContent = str;
-return div.innerHTML;
-}
-
 function renderCard(video) {
 const card = document.createElement("div");
 card.className = "card";
@@ -46,7 +40,17 @@ card.appendChild(media);
 
 const body = document.createElement("div");
 body.className = "card-body";
-body.innerHTML = `<h3>${escapeHtml(video.title)}</h3>`;
+
+if (video.tag) {
+const tagChip = document.createElement("span");
+tagChip.className = "tag-chip";
+tagChip.textContent = video.tag;
+body.appendChild(tagChip);
+}
+
+const titleEl = document.createElement("h3");
+titleEl.textContent = video.title;
+body.appendChild(titleEl);
 
 if (video.stats && video.stats.length > 0) {
 const statRow = document.createElement("div");
@@ -85,10 +89,34 @@ intro.textContent = section.intro;
 wrapper.appendChild(intro);
 }
 
-const grid = document.createElement("div");
+let currentGroup = Symbol("initial");
+let grid = null;
+
+videos.forEach((video) => {
+if (video.group !== currentGroup) {
+currentGroup = video.group;
+
+if (video.group) {
+const groupHeading = document.createElement("h3");
+groupHeading.className = "group-heading";
+groupHeading.textContent = video.group;
+wrapper.appendChild(groupHeading);
+
+if (video.groupIntro) {
+const groupIntro = document.createElement("p");
+groupIntro.className = "group-intro";
+groupIntro.textContent = video.groupIntro;
+wrapper.appendChild(groupIntro);
+}
+}
+
+grid = document.createElement("div");
 grid.className = "grid";
-videos.forEach((video) => grid.appendChild(renderCard(video)));
 wrapper.appendChild(grid);
+}
+
+grid.appendChild(renderCard(video));
+});
 
 return wrapper;
 }
