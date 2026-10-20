@@ -64,6 +64,28 @@ statRow.appendChild(badge);
 body.appendChild(statRow);
 }
 
+if (video.breakdown && video.breakdown.length > 0) {
+const buildRow = (cells, className) => {
+const rowEl = document.createElement("div");
+rowEl.className = className;
+cells.forEach((cellText) => {
+const span = document.createElement("span");
+span.textContent = cellText;
+rowEl.appendChild(span);
+});
+return rowEl;
+};
+
+const table = document.createElement("div");
+table.className = "breakdown-table";
+table.appendChild(buildRow(["Hook", "Spend", "Hook Rate", "Hold"], "breakdown-row breakdown-header"));
+video.breakdown.forEach((row) => {
+table.appendChild(buildRow([row.hook, row.spend, row.hookRate, row.hold], "breakdown-row"));
+});
+
+body.appendChild(table);
+}
+
 const desc = document.createElement("p");
 desc.textContent = video.description;
 body.appendChild(desc);
