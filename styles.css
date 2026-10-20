@@ -292,25 +292,6 @@ main {
   border-color: transparent transparent transparent #fff;
 }
 
-.detail-inset {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 38%;
-  max-width: 160px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border: 2px solid var(--matrix);
-  border-radius: 6px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-  background: #000;
-  transition: transform 0.15s ease;
-}
-
-.detail-inset:hover {
-  transform: scale(1.06);
-}
-
 .card .placeholder {
   width: 100%;
   aspect-ratio: 9 / 16;

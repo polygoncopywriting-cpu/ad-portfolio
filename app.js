@@ -16,16 +16,8 @@ const img = document.createElement("img");
 img.src = video.src;
 img.alt = video.title;
 img.loading = "lazy";
+if (video.aspectRatio) img.style.aspectRatio = video.aspectRatio;
 media.appendChild(img);
-
-if (video.detailImage) {
-const detail = document.createElement("img");
-detail.className = "detail-inset";
-detail.src = video.detailImage;
-detail.alt = video.detailAlt || `${video.title} — zoomed detail`;
-detail.loading = "lazy";
-media.appendChild(detail);
-}
 } else if (video.src) {
 const videoEl = document.createElement("video");
 videoEl.controls = true;
