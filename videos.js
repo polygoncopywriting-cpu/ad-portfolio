@@ -40,9 +40,14 @@ title: "Recent Work",
 intro: "Bounty16-C1 is a testimonial concept I wrote, shot, and edited on my own initiative for Pawpy's Ad Bounties program — it hasn't launched yet, so there's no spend data. The rest of this section (C26–C30) is also newly in testing. More concepts and bounty entries are in progress.",
 },
 {
+id: "spend-winners",
+title: "Spend Winners",
+intro: "The two concepts that pulled the most ad spend on this account, verified against Meta Ads Manager (Apr–Sep 2026). Only ad-set line items over $1,000 are counted; the same creative's landing-page test variants are combined into one total.",
+},
+{
 id: "track-record",
 title: "Track Record",
-intro: "Four concepts, tracked over a 4-month stretch — real, verified performance data including the account's strongest and weakest spenders. Editing skill has moved fast since these ran; see Recent Work above for current level.",
+intro: "Two more concepts from this account's testing history — C19, a breakout performer on a small budget, and C9, a concept that didn't land and was pulled early. See Spend Winners above for the account's top spenders, or Recent Work above for current editing level.",
 },
 {
 id: "other-brands",
@@ -137,10 +142,11 @@ src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH3-TH3
 poster: "",
 },
 {
-section: "track-record",
+section: "spend-winners",
 title: "B16-C3 · VH2-TH2 — The Control",
-description: "Running continuously for 5 months and $58K+ in spend — the most tested creative in the batch.",
+description: "The account's #1 spender by a wide margin — running across multiple landing-page tests for 5 months straight.",
 stats: [
+{ label: "Total Spend", value: "$82K+" },
 { label: "Hook Rate", value: "59.21%" },
 { label: "ThruPlay Hold", value: "20.78%" },
 { label: "ROAS", value: "1.16–1.53x" },
@@ -149,10 +155,11 @@ src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/b16-c3-vh2-th2.
 poster: "",
 },
 {
-section: "track-record",
+section: "spend-winners",
 title: "B16-C8 · VH1-TH1 — Top Efficiency",
-description: "Best cost-efficiency in the set, with the strongest hook of any tested creative.",
+description: "The account's #2 spender, with the strongest hook of any tested creative.",
 stats: [
+{ label: "Total Spend", value: "$13K+" },
 { label: "Hook Rate", value: "up to 70.9%" },
 { label: "ThruPlay Hold", value: "up to 15.1%" },
 { label: "ROAS", value: "up to 2.02x" },
