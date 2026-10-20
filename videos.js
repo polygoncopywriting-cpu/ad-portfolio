@@ -18,8 +18,16 @@
 // with capitalized filenames (B16-C29-..., B16-C30-...) — src URLs below
 // match that exactly. Everything else uses lowercase.
 //
-// TIMELINE dates are sourced from the project WhatsApp chat log (when
-// each concept was locked/loaded for review), not from Meta Ads Manager.
+// Production/lock dates below are sourced from the project WhatsApp
+// chat log, not from Meta Ads Manager.
+//
+// `status` on a video entry ("live" | "paused" | "unknown" | "not-launched")
+// reflects the most recent monthly Meta Ads Manager snapshot (currently
+// Sep 2026) — see STATUS_AS_OF. There's a built-in lag until the next
+// snapshot is reviewed. "unknown" means the concept didn't appear in the
+// visible rows of that snapshot (too new/low-spend to confirm either way).
+
+const STATUS_AS_OF = "Sep 2026";
 
 // Verified against Meta Ads Manager screenshots, Apr-Sep 2026. Counts
 // only ad-set line items that crossed $1,000 in spend, summed across
@@ -31,18 +39,6 @@ asOf: "Apr–Sep 2026",
 footnote: "Based on ads that crossed a $1,000 spend threshold. Smaller test placements aren't counted.",
 milestones: [100000, 250000, 500000, 1000000],
 };
-
-const TIMELINE = [
-{ date: "2026-04-20", tag: "C3", note: "Top spender · The Control" },
-{ date: "2026-05-14", tag: "C8 & C9", note: "Winner + loser test" },
-{ date: "2026-08-08", tag: "C19", note: "Recent Standout" },
-{ date: "2026-08-20", tag: "Bounty16-C1", note: "Self-initiated bounty", highlight: true },
-{ date: "2026-09-08", tag: "C26", note: "In testing" },
-{ date: "2026-09-12", tag: "C27", note: "In testing" },
-{ date: "2026-09-18", tag: "C28", note: "In testing" },
-{ date: "2026-09-21", tag: "C29", note: "In testing" },
-{ date: "2026-09-23", tag: "C30", note: "Latest" },
-];
 
 const SECTIONS = [
 {
@@ -70,6 +66,8 @@ intro: "A look outside the Pawpy account. This ad ran for Kleins Organic, a natu
 const VIDEOS = [
 {
 section: "recent",
+date: "2026-08-20",
+status: "not-launched",
 title: "Bounty16-C1 · VH1-TH1 — Warranty Test",
 description: "\"I tested their five-year warranty. Honestly, I expected a fight.\" — testimonial concept from the Ad Bounties program. 1 of 3 hook variations (see VH2 and VH3 below). No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/bounty16-c1-vh1-th1.mp4",
@@ -77,6 +75,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-08-20",
+status: "not-launched",
 title: "Bounty16-C1 · VH2-TH2 — Warranty Test",
 description: "\"Yes, it costs more — but after this, I'd still buy it again.\" — 1 of 3 hook variations for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/bounty16-c1-vh2-th2.mp4",
@@ -84,6 +84,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-08-20",
+status: "not-launched",
 title: "Bounty16-C1 · VH3-TH3 — Warranty Test",
 description: "\"One of my kids broke our dog's backseat extender. Then this happened.\" — 1 of 3 hook variations for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/bounty16-c1-vh3-th3.mp4",
@@ -91,6 +93,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-08",
+status: "paused",
 title: "B16-C26 · VH1-TH1",
 description: "\"Avoid making the same mistake I did.\" — new concept, in testing. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/b16-c26-vh1-th1.mp4",
@@ -98,6 +102,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-12",
+status: "live",
 title: "B16-C27 · VH1-TH1",
 description: "\"Watch what happens the second two dogs actually step on one of these.\" — new concept, in testing. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/b16-c27-vh1-th1.mp4",
@@ -105,6 +111,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-18",
+status: "unknown",
 title: "B16-C28 · VH1-TH1",
 description: "\"I didn't buy 7 different...\" — new concept, in testing. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/b16-c28-vh1-th1.mp4",
@@ -112,6 +120,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-21",
+status: "unknown",
 title: "B16-C29 · VH1-TH1",
 description: "\"I've had dogs for twenty-two years.\" — 1 of 3 hook variations being tested for this concept (see VH2 and VH3 below). No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C29-VH1-TH1.mp4",
@@ -119,6 +129,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-21",
+status: "unknown",
 title: "B16-C29 · VH2-TH2",
 description: "\"If your dog stands the whole drive...\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C29-VH2-TH2.mp4",
@@ -126,6 +138,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-21",
+status: "unknown",
 title: "B16-C29 · VH3-TH3",
 description: "\"It hit me hard.\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C29-VH3-TH3.mp4",
@@ -133,6 +147,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-23",
+status: "unknown",
 title: "B16-C30 · VH1-TH1",
 description: "\"This bundle from Pawpy...\" — 1 of 3 hook variations being tested for this concept (see VH2 and VH3 below). No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH1-TH1.mp4",
@@ -140,6 +156,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-23",
+status: "unknown",
 title: "B16-C30 · VH2-TH2",
 description: "\"This bundle from Pawpy stuff is the worst...\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH2-TH2.mp4",
@@ -147,6 +165,8 @@ poster: "",
 },
 {
 section: "recent",
+date: "2026-09-23",
+status: "unknown",
 title: "B16-C30 · VH3-TH3",
 description: "\"If your dog loves to ride...\" — 1 of 3 hook variations being tested for this concept. No performance data available yet.",
 src: "https://pub-2aa6b3f278164eb6b00d8eec5c23e516.r2.dev/videos/B16-C30-VH3-TH3.mp4",
@@ -154,6 +174,8 @@ poster: "",
 },
 {
 section: "spend-winners",
+date: "2026-04-20",
+status: "paused",
 title: "B16-C3 · VH2-TH2 — The Control",
 description: "The account's #1 spender by a wide margin — running across multiple landing-page tests for 5 months straight.",
 stats: [
@@ -167,6 +189,8 @@ poster: "",
 },
 {
 section: "spend-winners",
+date: "2026-05-14",
+status: "paused",
 title: "B16-C8 · VH1-TH1 — Top Efficiency",
 description: "The account's #2 spender, with the strongest hook of any tested creative.",
 stats: [
@@ -180,6 +204,8 @@ poster: "",
 },
 {
 section: "track-record",
+date: "2026-08-08",
+status: "paused",
 title: "B16-C19 — Recent Standout",
 description: "Three hook variations tested Aug–Sep 2026. VH2's hold rate climbed sharply as it scaled into September; VH3's spend dropped off after its first month.",
 stats: [
@@ -195,6 +221,8 @@ poster: "",
 },
 {
 section: "track-record",
+date: "2026-05-14",
+status: "paused",
 title: "B16-C9 · VH1-TH1 — Tested & Killed",
 description: "Hook never landed, so it was capped and pulled before it scaled.",
 stats: [

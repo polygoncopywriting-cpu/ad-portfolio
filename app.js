@@ -1,3 +1,15 @@
+const STATUS_LABELS = {
+live: "Live",
+paused: "Paused",
+unknown: "Status unknown",
+"not-launched": "Not yet launched",
+};
+
+function formatCardDate(iso) {
+const d = new Date(iso + "T00:00:00Z");
+return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+}
+
 function renderCard(video) {
 const card = document.createElement("div");
 card.className = "card";
@@ -51,6 +63,22 @@ body.appendChild(tagChip);
 const titleEl = document.createElement("h3");
 titleEl.textContent = video.title;
 body.appendChild(titleEl);
+
+if (video.status) {
+const statusRow = document.createElement("div");
+statusRow.className = "status-row";
+
+const dot = document.createElement("span");
+dot.className = `status-dot status-${video.status}`;
+statusRow.appendChild(dot);
+
+const label = document.createElement("span");
+const statusText = STATUS_LABELS[video.status] || video.status;
+label.textContent = video.date ? `${statusText} · ${formatCardDate(video.date)}` : statusText;
+statusRow.appendChild(label);
+
+body.appendChild(statusRow);
+}
 
 if (video.stats && video.stats.length > 0) {
 const statRow = document.createElement("div");
@@ -199,72 +227,14 @@ wrapper.appendChild(footnote);
 return wrapper;
 }
 
-function formatTimelineDate(iso) {
-const d = new Date(iso + "T00:00:00Z");
-return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
-}
-
-function renderTimeline(entries) {
-const wrapper = document.createElement("div");
-wrapper.className = "timeline-wrap";
-
-const heading = document.createElement("h2");
-heading.textContent = "Timeline";
-wrapper.appendChild(heading);
-
-const note = document.createElement("p");
-note.className = "timeline-note";
-note.textContent = "Selected concepts from a 30+ piece body of work on this account, shown in production order (lower numbers = earlier). Includes the top-spending concept to date and the most recent work in progress.";
-wrapper.appendChild(note);
-
-const scroller = document.createElement("div");
-scroller.className = "timeline-scroller";
-
-const track = document.createElement("div");
-track.className = "timeline-track";
-
-entries.forEach((entry) => {
-const node = document.createElement("div");
-node.className = "timeline-node" + (entry.highlight ? " highlight" : "");
-
-const date = document.createElement("span");
-date.className = "timeline-date";
-date.textContent = formatTimelineDate(entry.date);
-node.appendChild(date);
-
-const dot = document.createElement("span");
-dot.className = "timeline-dot";
-node.appendChild(dot);
-
-const tag = document.createElement("span");
-tag.className = "timeline-tag";
-tag.textContent = entry.tag;
-node.appendChild(tag);
-
-if (entry.note) {
-const noteEl = document.createElement("span");
-noteEl.className = "timeline-node-note";
-noteEl.textContent = entry.note;
-node.appendChild(noteEl);
-}
-
-track.appendChild(node);
-});
-
-scroller.appendChild(track);
-wrapper.appendChild(scroller);
-return wrapper;
+const statusNote = document.getElementById("status-note");
+if (statusNote && typeof STATUS_AS_OF !== "undefined") {
+statusNote.textContent = `Live/paused status on each concept below reflects the most recent monthly Meta Ads Manager snapshot (${STATUS_AS_OF}) — updated when a new snapshot is reviewed.`;
 }
 
 const spendProgressContainer = document.getElementById("spend-progress");
 if (spendProgressContainer && typeof SPEND_PROGRESS !== "undefined") {
 spendProgressContainer.appendChild(renderSpendProgress(SPEND_PROGRESS));
-}
-
-const timelineContainer = document.getElementById("timeline");
-const hasTimeline = timelineContainer && typeof TIMELINE !== "undefined" && TIMELINE.length > 0;
-if (hasTimeline) {
-timelineContainer.appendChild(renderTimeline(TIMELINE));
 }
 
 const portfolio = document.getElementById("portfolio");
@@ -280,7 +250,6 @@ portfolio.appendChild(renderSection(section, videos));
 const navContainer = document.getElementById("site-nav");
 if (navContainer) {
 const links = [];
-if (hasTimeline) links.push({ id: "timeline", label: "Timeline" });
 sectionsWithVideos.forEach((section) => links.push({ id: section.id, label: section.title }));
 
 links.forEach((link) => {
